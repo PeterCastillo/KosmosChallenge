@@ -1,7 +1,7 @@
 import React, {useState } from "react"
 import { Employee } from "../types/form"
 
-export const useForm = (initialState:Employee):[ Employee , React.ChangeEventHandler ] => {
+export const useForm = (initialState:Employee):[ Employee , React.ChangeEventHandler , () => void] => {
 
     const [ inputs , setInputs ] = useState<Employee>(initialState)
 
@@ -13,6 +13,10 @@ export const useForm = (initialState:Employee):[ Employee , React.ChangeEventHan
             [name]: type === "radio" && checked && value === "si" ? "si" : value
         }))
     }
+    
+    const handleReset = () => {
+        setInputs(initialState)
+    }
 
-    return [ inputs , handleFilter ]
+    return [ inputs , handleFilter , handleReset ]
 }

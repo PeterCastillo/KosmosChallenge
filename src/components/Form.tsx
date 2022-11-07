@@ -8,7 +8,7 @@ import { FormProps } from "../types/form"
 const Form = ({handleShowForm}:FormProps) => {
 
     const dispach = useDispatch()
-    const [ inputs , handleFilter ] = useForm({
+    const [ inputs , handleFilter , handleReset ] = useForm({
         nombre:"",
         email:"",
         estadoCivil:"",
@@ -19,6 +19,7 @@ const Form = ({handleShowForm}:FormProps) => {
 
     const handleADD = () =>{
         dispach(addEmployee(inputs))
+        handleReset()
     }
     return (
         <FormComtainer>
